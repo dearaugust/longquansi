@@ -1,4 +1,4 @@
-﻿<krpano version="1.19" title="唐山龙泉寺">
+﻿<krpano version="1.19" title="唐山龙泉寺" onstart="startup(playsound);">
 	<!-- <plugin name="editor" url="plugins/editor.swf" keep="true" /> -->
 	<include url="skin/vtourskin.xml" />
 	<include url="%SWFPATH%/skin/style.xml" />
@@ -74,14 +74,12 @@
         preload="true"
         keep="true"
         />
-	<action name="bgsnd_action" autorun="onstart">
-	   playsound(bgsnd, 'bg.mp3', 0);
-	</action>
 	<!-- startup action - load the first scene -->
 	<action name="startup" autorun="onstart">
 		if(startscene === null OR !scene[get(startscene)], copy(startscene,scene[0].name); );
 		loadscene(get(startscene), null, MERGE);
 		if(startactions !== null, startactions() );
+		playsound(bgsnd, '%SWFPATH%/skin/bj.mp3', 0);
 	</action>
 
 	<!-- 启用自动旋转 -->
