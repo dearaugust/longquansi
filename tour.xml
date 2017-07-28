@@ -92,7 +92,16 @@
             />
  
 	<!-- 旋转一圈后加载下一个场景 -->
-	<events onautorotateoneround="blend_to_next_scene_during_autorotation()" />
+	<events name="onautorotateevents" keep="true" onautorotateoneround="nextscene()"/>
+	<action name="nextscene">
+		autorotate.stop();wait(0);
+		set(ns, get(scene[get(xml.scene)].index));
+		set(maxs, get(scene.count));
+		add(ns,1);
+		if(ns == maxs, set(ns,0));
+		loadscene(get(scene[get(ns)].name), null, MERGE, BLEND(1.5));
+		autorotate.start();
+	</action>
 
 	<style name="hotspot_ani_Ahead" 
 		url="%SWFPATH%/skin/new_spotd1_128_3200.png" 
