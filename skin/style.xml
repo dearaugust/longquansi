@@ -1,0 +1,102 @@
+<krpano>
+	<textstyle name="hotspottextstyle"
+			   font="Arial" 
+			   fontsize="14"
+			   bold="true" 
+			   italic="false"
+			   textcolor="0xFFFFFF"
+			   background="false" 
+			   border="false"
+			   alpha="0.8" 
+			   blendmode="layer"
+			   effect="glow(0x000000,0.5,4,3);dropshadow(4,45,0x000000,4,0.66);"
+			   origin="cursor"
+			   edge="bottom"
+			   textalign="center"
+			   xoffset="0"
+			   yoffset="-3"
+			   noclip="true"
+			   showtime="0.1"
+			   fadetime="0.25" 
+			   fadeintime="0.1"
+			/> <!-- 透明字体添加 -->
+
+	<style name="letter" keep="false" alpha="0.1"
+	       capture="true" handcursor="false"
+	       fillcolor="0xffffff" fillalpha="0.3"
+	       bordercolor="0xffffff" borderalpha="0.5"
+	       onover="tween(alpha, 1, 0.25);"
+	       onout="tween(alpha, 0.1, 0.25);"
+	       ondown.touch="onover(); asyncloop(pressed, onhover(); );"
+	       onup.touch="onout();"
+	       />
+
+	<textstyle name="STYLE2"
+	           font="Arial" fontsize.no-mobile="18" fontsize.mobile="28" bold="true"
+	           background="false" border="false"
+	           textcolor="0xffffff"
+	           textalign="center"
+	           textshadow="0.01" textshadowrange="3" textshadowcolor="0xffffff"
+	           yoffset.touch="-40"
+	           />
+<!-- hotspot style predefines - white hotspot --> <!-- 动态热点 -->
+	<style name="hotspot_ani_Style5" 
+		       url="%SWFPATH%/data/embed/skin/new_spotd7_gif.png" 
+		       crop="0|0|128|128" 
+		       framewidth="128" frameheight="128" frame="0" lastframe="24"
+		       scale="1"
+		       scale.mobile="0.40"
+		       onover="tween(scale,0.7);"
+			   onout="tween(scale,0.6);"
+		       onloaded="if(distorted,add_tooltip2(get(linkedscene),1),add_all_the_time_tooltip(get(linkedscene),1));
+				   skin_hotspotstyle_animate();if(skin_settings.tooltips_hotspots, 
+				   if(linkedscene, copy(tooltip,scene[get(linkedscene)].title); 
+				   loadstyle(skin_tooltips); ));hotspot_animate();"
+			   onclick="if(linkedscene, tween(scale,0.25,0.5); tween(oy,-20,0.5); tween(alpha,0,0.5); looktohotspot(); loadscene(get(linkedscene),null,MERGE,BLEND(1)); skin_updatescroll(); );"
+		/> 
+	<style name="hotspot_ani_white"
+	       url="%SWFPATH%/data/embed/skin/hotspot_ani_white_64x64x20.png"
+	       crop="0|0|64|64"
+		   scale="1.2"
+	       framewidth="64" frameheight="64" frame="0" lastframe="19"
+	       onloaded="hotspot_animate();"
+	       />
+	<style name="hotspot_ani_white1"
+	       url="%SWFPATH%/data/embed/skin/hotspot_ani_white1_64x64x20.png"
+	       crop="0|0|64|64"
+		   scale="1.2"
+	       framewidth="64" frameheight="64" frame="0" lastframe="19"
+	       onloaded="hotspot_animate();"
+	       />
+	<style name="hotspot_ani_black"
+	       url="%SWFPATH%/data/embed/skin/hotspot_ani_black_64x64x20.png"
+	       crop="0|0|64|64"
+		   scale="1.2"
+	       framewidth="64" frameheight="64" frame="0" lastframe="19"
+	       onloaded="hotspot_animate();"
+	       />
+	<style name="hotspot_ani_black1"
+	       url="%SWFPATH%/data/embed/skin/hotspot_ani_black1_64x64x20.png"
+	       crop="0|0|64|64"
+		   scale="1.2"
+	       framewidth="64" frameheight="64" frame="0" lastframe="19"
+	       onloaded="hotspot_animate();"
+	       />
+	<style name="letter" keep="false" alpha="0.1"
+	       capture="true" handcursor="false"
+	       fillcolor="0xffffff" fillalpha="0.3"
+	       bordercolor="0xffffff" borderalpha="0.5"
+	       onover="tween(alpha, 1, 0.25);"
+	       onout="tween(alpha, 0.1, 0.25);"
+	       ondown.touch="onover(); asyncloop(pressed, onhover(); );"
+	       onup.touch="onout();"
+	       />
+	<!-- hotspot animation action -->
+	<action name="hotspot_animate"> <!-- 动态热点 -->
+		inc(frame,1,get(lastframe),0);
+		mul(ypos,frame,frameheight);
+		txtadd(crop,'0|',get(ypos),'|',get(framewidth),'|',get(frameheight));
+		delayedcall(0.1, if(loaded, hotspot_animate() ) );
+	</action>
+
+</krpano>	
